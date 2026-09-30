@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Ámbar</title>
+<style>
+:root{--ink:#29252a;--muted:#777078;--paper:#fcfaf8;--line:#e6ddda;--accent:#956b79}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+main{width:min(100%,736px);margin:auto;padding:32px 16px}
+.screen{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .55s ease,transform .55s ease}
+.wrap{width:100%;max-width:600px}
+.micro{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.num{font:11px "Courier New",monospace;color:#aaa;margin-bottom:18px}
+h1,h2{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-weight:400;letter-spacing:-.035em}
+h1{font-size:clamp(40px,11vw,68px);line-height:1;margin:0 0 23px}
+.lead{font-size:clamp(17px,4.6vw,21px);line-height:1.72;color:#4b4549;margin:0 auto 31px;max-width:550px}
+.question{font-style:italic;color:var(--muted);font-size:14px;margin-bottom:13px}
+.buttons{position:relative;height:110px;display:flex;align-items:center;justify-content:center;gap:16px}
+button{font:inherit;border:1px solid var(--line);border-radius:999px;padding:13px 28px;min-height:48px;cursor:pointer;touch-action:manipulation;transition:all .38s ease}
+button:focus-visible{outline:3px solid #cdb2bb;outline-offset:3px}
+#yes{background:var(--ink);color:#fff;border-color:var(--ink);position:relative;z-index:2}
+#no{background:var(--paper);position:relative;z-index:3}
+.aside{font-size:11px;color:#aaa;margin-top:18px}
+.letter{width:100%;background:var(--paper);border:1px solid var(--line);padding:clamp(30px,8vw,64px) clamp(23px,7vw,62px);text-align:left;box-shadow:0 18px 50px rgba(35,28,32,.07)}
+.head{text-align:center;margin-bottom:34px}.head .micro{margin-bottom:12px}
+h2{font-size:clamp(34px,9vw,50px);margin:0}.line{width:42px;height:1px;background:var(--accent);margin:21px auto 0}
+.letter p{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(17px,4.5vw,20px);line-height:1.86;color:#403a3e;margin:0 0 23px}
+.letter em{font-size:.9em;color:var(--muted)}
+.signature{text-align:right;font-family:"Brush Script MT","Segoe Script",cursive;font-size:42px;margin-top:37px}
+.ps{text-align:center!important;font-size:13px!important;color:var(--muted)!important;margin-top:37px!important;line-height:1.6!important}
+.fade{animation:appear .8s ease both}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main id="ambar">
+<section class="screen" id="start">
+<div class="wrap">
+<div class="micro">un mensaje para la persona que me hace brillar</div>
+<div class="num">00:00 — intentando hacer algo que no sea simplemente decir “perdón”</div>
+<h1>Perdón.</h1>
+<p class="lead">Sé que estuve mal en todo lo de hace rato y por eso vengo a pedir que me perdones.</p>
+<div class="question" id="q">¿Me perdonás?</div>
+<div class="buttons">
+<button id="no" type="button">No</button>
+<button id="yes" type="button">Sí</button>
+</div>
+<div class="aside" id="aside">Sí, ya sé que probablemente estés poniendo cara de “este pibe...”</div>
+</div>
+</section>
+
+<section class="screen" id="letter" hidden>
+<article class="letter fade">
+<div class="head">
+<div class="micro">ahora sí, sin botones para escapar</div>
+<h2>Fleitas, perdón.</h2>
+<div class="line"></div>
+</div>
+<p>Perdón si a veces me saco o no sé entender. No me gusta pelearme con vos, es algo que detesto, pero a veces me como la cabeza con cosas boludas o chicas a las que no les tengo que dar importancia, o de las que yo ya sé la respuesta.</p>
+<p>Perdón por atacarte y perdón por tener que hacerte soportar mis cambios de humor. Sé que no siempre es fácil bancarme cuando me pongo así, y sé que muchas veces termino haciendo más grande algo que capaz tendría que haber dejado pasar.</p>
+<p>Y creo que eso es lo que más bronca me da: que después de todo lo que somos, de todas nuestras vueltas, nuestros enojos, nuestros silencios y de esa manera tan rara que tenemos de seguir eligiéndonos, yo termine haciendo que entre nosotros haya una pelea por cosas que quizás ni siquiera valían la pena.</p>
+<p>No quiero justificarme. Solamente quiero pedirte perdón. Porque aunque sea un cabeza dura, aunque tenga mis berrinches y aunque a veces no sepa cómo manejar lo que siento, <strong>no me gusta estar mal con vos.</strong></p>
+<p>Espero que al final del día me elijas para poder hablar de vuelta conmigo.</p>
+<p>Te extraño <em>(pasó una hora, pero eso no importa).</em></p>
+<p>Y te amo.</p>
+<div class="signature">Iván</div>
+<p class="ps">PD: Si después de hacerte leer todo esto todavía querés perdonarme, prometo intentar que la próxima página que haga para vos sea porque hice algo bien. ♡</p>
+</article>
+</section>
+</main>
+<script>
+const no=document.getElementById("no"),yes=document.getElementById("yes"),start=document.getElementById("start"),letter=document.getElementById("letter"),q=document.getElementById("q"),aside=document.getElementById("aside");
+let n=0;
+const phrases=["¿segura?","Fleitas, ¿en serio?","¿podés apretar el sí?"];
+const hints=["Bueno... te doy otra oportunidad para pensarlo.","Fleitas, en serio, ¿vamos a hacer esto?","Dale. Ya sabés cuál es la respuesta."];
+no.addEventListener("click",()=>{
+ n=Math.min(n+1,3);
+ no.textContent=phrases[n-1]; aside.textContent=hints[n-1];
+ q.textContent=n===1?"Pensalo otra vez...":n===2?"Esto ya se está poniendo personal.":"Última oportunidad, Fleitas.";
+ yes.style.fontSize=(16+n*9)+"px";
+ yes.style.padding=`${13+n*5}px ${28+n*12}px`;
+ yes.style.boxShadow=`0 10px ${10+n*7}px rgba(39,35,40,.${10+n*5})`;
+ no.style.transform=n===1?"translateX(-20px)":n===2?"translateX(75px) translateY(-8px)":"translateX(-100px) translateY(18px)";
+});
+yes.addEventListener("click",()=>{
+ start.style.opacity="0"; start.style.transform="translateY(-14px)";
+ setTimeout(()=>{start.hidden=true;letter.hidden=false},500);
+});
+</script>
+</body>
+</html>
